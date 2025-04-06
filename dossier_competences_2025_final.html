@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin Arnoud - Dossier de Compétences IT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0077b6;
+            --secondary-color: #023e8a;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #fff;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --timeline-bg: #e9ecef;
+            --border-color: #dee2e6;
+            --hover-color: #f0f8ff;
+            --soft-skills-bg: #e7f5ff;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #48cae4;
+            --secondary-color: #90e0ef;
+            --text-color: #e0e0e0;
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --timeline-bg: #2c2c2c;
+            --border-color: #333;
+            --hover-color: #2a3950;
+            --soft-skills-bg: #1a3d5a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .profile-info {
+            flex: 2;
+        }
+
+        .contact-info {
+            flex: 1;
+            text-align: right;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 8px;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 15px;
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Profile section */
+        .profile-card {
+            padding: 25px;
+            line-height: 1.7;
+        }
+
+        /* Skills section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            margin-bottom: 15px;
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category h3 i {
+            margin-right: 10px;
+        }
+
+        .skills-list {
+            list-style-type: none;
+        }
+
+        .skills-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skills-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Soft skills */
+        .soft-skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .soft-skill-card {
+            background-color: var(--soft-skills-bg);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .soft-skill-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .soft-skill-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .soft-skill-card p {
+            font-size: 0.9rem;
+        }
+
+        /* Experience section */
+        .experience-timeline {
+            position: relative;
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .timeline-item:after {
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .timeline-company {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .timeline-role {
+            font-size: 1.1rem;
+        }
+
+        .timeline-date {
+            color: var(--primary-color);
+            font-style: italic;
+        }
+
+        .timeline-context {
+            background-color: var(--timeline-bg);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .experience-list {
+            list-style-type: none;
+            margin-top: 10px;
+        }
+
+        .experience-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .experience-list li:before {
+            content: "►";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        .tech-environment {
+            background-color: var(--timeline-bg);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Education section */
+        .education-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .education-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .education-year {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .education-institution {
+            font-weight: bold;
+        }
+
+        /* Language section */
+        .language-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .language-card {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+        }
+
+        .language-card i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+
+        /* Print styles - Optimisés pour PDF */
+        @media print {
+            body {
+                background-color: white;
+                color: black;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0;
+            }
+
+            header {
+                background-color: white !important;
+                color: black;
+                box-shadow: none;
+                padding: 15px 0;
+            }
+
+            .contact-item a {
+                color: black;
+            }
+
+            .card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .theme-toggle, .print-button {
+                display: none;
+            }
+
+            .skills-container,
+            .soft-skills-container,
+            .education-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline-item:before,
+            .timeline-item:after {
+                background-color: black;
+            }
+
+            .soft-skill-card {
+                background-color: #f0f0f0;
+            }
+
+            .timeline-context, .tech-environment {
+                background-color: #f0f0f0;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+
+            .timeline-item {
+                page-break-inside: avoid;
+            }
+
+            /* Forcer l'affichage des couleurs à l'impression */
+            .section-title,
+            .timeline-company,
+            .timeline-date,
+            .education-year {
+                color: #0077b6 !important;
+            }
+
+            .skills-list li:before,
+            .experience-list li:before {
+                color: #0077b6 !important;
+            }
+
+            /* S'assurer que le contenu tient sur des pages standard */
+            #technical-skills {
+                page-break-before: auto;
+            }
+
+            #experience {
+                page-break-before: auto;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info {
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .contact-item {
+                justify-content: center;
+            }
+
+            .skills-container,
+            .soft-skills-container,
+            .education-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+            }
+        }
+
+        /* Bouton d'impression */
+        .print-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .print-button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <button class="print-button" id="printButton">
+        <i class="fas fa-print"></i> Imprimer
+    </button>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-info">
+                    <h1>Kevin Arnoud</h1>
+                    <div class="job-title">Chef de Projet IT | Team Leader | Manager IT | Ingénieur Technique | Prompt Engineer</div>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:kev.arnoud@outlook.fr">kev.arnoud@outlook.fr</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:0765767986">07 65 76 79 86</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/kevin-arnoud-571771184" target="_blank">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Profil professionnel -->
+        <section id="profile">
+            <h2 class="section-title"><i class="fas fa-user"></i> Profil professionnel</h2>
+            <div class="card profile-card">
+                <p>Professionnel de l'IT avec plus de 8 ans d'expérience alliant gestion de projet, leadership d'équipe et expertise technique. A exercé des rôles de Chef de Projet IT, Team Leader et Ingénieur Systèmes, piloté des portefeuilles de projets (30+ projets simultanés), encadré des équipes jusqu'à 20 personnes. Fait preuve d'innovation en intégrant des outils d'IA (Prompt Engineering) pour optimiser les processus (génération de scripts automatisée 50% plus rapide qu'un expert PowerShell 15 ans). Reconnu pour son esprit analytique et sa force de proposition, cherchant à mettre à profit ce double profil managérial/technique dans un poste de PM IT, Team Leader, Manager IT ou Ingénieur Technique.</p>
+            </div>
+        </section>
+
+        <!-- Compétences techniques -->
+        <section id="technical-skills">
+            <h2 class="section-title"><i class="fas fa-cogs"></i> Compétences Techniques</h2>
+            <div class="skills-container">
+                <div class="card">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-server"></i> Virtualisation</h3>
+                        <ul class="skills-list">
+                            <li>VMware vSphere</li>
+                            <li>Hyper-V</li>
+                            <li>VirtualBox</li>
+                            <li>VMware Player</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-desktop"></i> Systèmes</h3>
+                        <ul class="skills-list">
+                            <li>Windows Server (2003 à 2022)</li>
+                            <li>Active Directory, DNS, DHCP</li>
+                            <li>DFS, GPO, IIS, WSUS</li>
+                            <li>Linux</li>
+                            <li>MS SQL</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-code"></i> Langages & Script</h3>
+                        <ul class="skills-list">
+                            <li>PowerShell</li>
+                            <li>Batch</li>
+                            <li>Prompt Engineering (IA)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-tools"></i> Outils</h3>
+                        <ul class="skills-list">
+                            <li>Veeam Backup</li>
+                            <li>Office 365</li>
+                            <li>Sophos (Firewall/VPN)</li>
+                            <li>MDT (Deployment)</li>
+                            <li>Jira, ChatGPT, Gemini</li>
+                            <li>Perplexity, Claude AI</li>
+                            <li>CheckMK, Nagios, Splunk</li>
+                            <li>Power BI, Ansible</li>
+                            <li>Suite Microsoft 365</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="skill-category">
+                        <h3><i class="fas fa-tasks"></i> Gestion de projet</h3>
+                        <ul class="skills-list">
+                            <li>Méthodologies Waterfall</li>
+                            <li>Coordination multi-équipes</li>
+                            <li>Outils de ticketing & suivi</li>
+                            <li>Reporting KPI</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Soft Skills -->
+        <section id="soft-skills">
+            <h2 class="section-title"><i class="fas fa-brain"></i> Soft Skills</h2>
+            <div class="soft-skills-container">
+                <div class="card soft-skill-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Leadership</h3>
+                    <p>Encadrement d'équipe et management de projet éprouvés, capacité à motiver et guider des équipes pluridisciplinaires.</p>
+                </div>
+                
+                <div class="card soft-skill-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Innovation</h3>
+                    <p>Intègre les nouvelles technologies (ex : solutions IA) pour améliorer l'efficacité opérationnelle et automatiser les processus.</p>
+                </div>
+                
+                <div class="card soft-skill-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Esprit analytique</h3>
+                    <p>Aptitude à analyser des problématiques complexes et à élaborer des solutions data-driven efficaces.</p>
+                </div>
+                
+                <div class="card soft-skill-card">
+                    <i class="fas fa-comment-dots"></i>
+                    <h3>Force de proposition</h3>
+                    <p>Proactif dans l'identification d'améliorations et la suggestion d'initiatives pour optimiser performances et qualité de service.</p>
+                </div>
+                
+                <div class="card soft-skill-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Travail d'équipe</h3>
+                    <p>Collaboration active, communication claire, esprit d'entraide et gestion efficace des conflits pour fédérer les équipes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expériences professionnelles -->
+        <section id="experience">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Expériences Professionnelles</h2>
+            <div class="experience-timeline">
+                <!-- SOPRA STERIA (Chef de Projet) -->
+                <div class="card timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">SOPRA STERIA (Airbus defense and space)</div>
+                            <div class="timeline-role">Chef de Projet IT (Build On Demand)</div>
+                        </div>
+                        <div class="timeline-date">Décembre 2024 - Avril 2025</div>
+                    </div>
+                    <div class="timeline-context">
+                        Contexte : Prise en charge d'un portefeuille de projets à la suite du remplacement de 3 Chefs de Projet.
+                    </div>
+                    <ul class="experience-list">
+                        <li>Gestion d'un portefeuille de projets IT (méthodologie Waterfall) – pilotage de 30+ projets en parallèle.</li>
+                        <li>Analyse et gestion des risques projets, avec mise en place de plans d'actions préventifs et correctifs.</li>
+                        <li>Planification et budget : élaboration des devis, estimation des charges, planification des ressources.</li>
+                        <li>Communication projet : organisation et animation de réunions hebdomadaires, suivi des avancements.</li>
+                        <li>Facturation et suivi contractuel : suivi mensuel des consommés projet.</li>
+                        <li>Optimisation des processus : mise en place d'outils et processus automatisés de gestion de projet.</li>
+                        <li>Coordination transversale : gestion des priorités et coordination des équipes opérationnelles.</li>
+                    </ul>
+                    <div class="tech-environment">
+                        Environnement : Suite Microsoft (Excel, PowerPoint), Outil interne "Jarvis", QlikSense…
+                    </div>
+                </div>
+
+                <!-- SOPRA STERIA (Ingénieur Systèmes) -->
+                <div class="card timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">SOPRA STERIA (Airbus defense and space)</div>
+                            <div class="timeline-role">Ingénieur Systèmes polyvalent (Squad Build – Agile)</div>
+                        </div>
+                        <div class="timeline-date">Novembre 2022 - Novembre 2024</div>
+                    </div>
+                    <div class="timeline-context">
+                        Contexte : Membre d'une squad Build Project en méthodologie Agile (Scrum) chargée des déploiements et évolutions d'infrastructures chez le client.
+                    </div>
+                    <ul class="experience-list">
+                        <li>Déploiement complet d'un Master Windows Server 2019 durci via MDT et scripts PowerShell en 4 mois.</li>
+                        <li>Installation et configuration automatisée d'agents logiciels sur un parc de 3 000+ serveurs Windows.</li>
+                        <li>Automatisation & IA : Prompt Engineering (ChatGPT) pour accélérer le développement de scripts PowerShell.</li>
+                        <li>Administration système : provisioning de serveurs Windows/Linux, configurations AD, exploitation d'environnements VMware.</li>
+                        <li>Sécurité & sauvegarde : déploiement d'outils de sécurité et gestion des sauvegardes avec Veeam Backup.</li>
+                        <li>Support projet & amélioration continue : collaboration avec les équipes RUN pour la transition des projets.</li>
+                    </ul>
+                    <div class="tech-environment">
+                        Environnement : Windows Server 2016/2019, Linux (RedHat), VMware vSphere, PowerShell, Ansible, Veeam, Trend Micro, MSSQL, Outils IA (ChatGPT)…
+                    </div>
+                </div>
+
+                <!-- INETUM -->
+                <div class="card timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">INETUM</div>
+                            <div class="timeline-role">Administrateur Systèmes Windows</div>
+                        </div>
+                        <div class="timeline-date">Septembre 2022 - Novembre 2022</div>
+                    </div>
+                    <div class="timeline-context">
+                        Contexte : Mission courte d'assistance niveau 1/2/3 sur l'infrastructure Windows Server d'un client.
+                    </div>
+                    <ul class="experience-list">
+                        <li>Support système N1/N2/N3 : prise en charge des incidents et demandes sur les serveurs Windows.</li>
+                        <li>Administration courante : gestion des comptes AD, surveillance des serveurs, interventions sur les services Windows.</li>
+                    </ul>
+                </div>
+
+                <!-- PARTITIO (Coordinateur de Projets) -->
+                <div class="card timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">PARTITIO</div>
+                            <div class="timeline-role">Coordinateur de Projets Cloud</div>
+                        </div>
+                        <div class="timeline-date">Janvier 2022 - Août 2022</div>
+                    </div>
+                    <div class="timeline-context">
+                        Contexte : Pilotage transversal de projets de migration et déploiement cloud pour divers clients.
+                    </div>
+                    <ul class="experience-list">
+                        <li>Gestion de projet : coordination et suivi de plusieurs projets Cloud simultanés.</li>
+                        <li>Animation d'atelier & réunions : organisation et animation des réunions clés du projet.</li>
+                        <li>Coordination multi-équipes : suivi des actions des équipes techniques et des prestataires.</li>
+                        <li>Relation client : point de contact privilégié, gestion des attentes et accompagnement au changement.</li>
+                    </ul>
+                </div>
+
+                <!-- PARTITIO (Responsable Pôle RUN) -->
+                <div class="card timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">PARTITIO</div>
+                            <div class="timeline-role">Responsable Pôle RUN (Team Leader Support)</div>
+                        </div>
+                        <div class="timeline-date">Septembre 2020 - Décembre 2021</div>
+                    </div>
+                    <div class="timeline-context">
+                        Contexte : Management de l'équipe support informatique (RUN) et gestion des incidents critiques pour des clients grands comptes.
+                    </div>
+                    <ul class="experience-list">
+                        <li>Management d'équipe : encadrement et animation d'une équipe de 6 techniciens/consultants support.</li>
+                        <li>Montée en compétences : coaching et formation continue de l'équipe sur la résolution d'incidents.</li>
+                        <li>Support expert : assistance technique de niveau 3 sur les incidents systèmes Windows et réseaux complexes.</li>
+                        <li>Qualité de service & reporting : suivi de la relation clients et élaboration de reportings via Power BI.</li>
+                        <li>Amélioration continue : recueil des nouveaux besoins clients et propositions d'évolutions de service.</li>
+                    </ul>
+                </div>
+
+                <!-- PARTITIO (Consultant Support) -->
+                <div class="card timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <div class="timeline-company">PARTITIO</div>
+                            <div class="timeline-role">Consultant Support Informatique (RUN)</div>
+                        </div>
+                        <div class="timeline-date">Février 2017 - Août 2020</div>
+                    </div>
+                    <div class="timeline-context">
+                        Contexte : Support technique mutualisé pour une clientèle B2B, gestion des demandes et incidents systèmes/réseaux de niveau 1 à 3.
+                    </div>
+                    <ul class="experience-list">
+                        <li>Support utilisateur & supervision : prise d'appels clients et enregistrement des demandes.</li>
+                        <li>Administration Windows & AD : gestion quotidienne des environnements Windows Server des clients.</li>
+                        <li>Virtualisation & stockage : gestion des infrastructures virtualisées (VMware vSphere, Hyper-V).</li>
+                        <li>Sauvegarde & messagerie : exploitation de Veeam Backup et administration de la messagerie Office 365.</li>
+                        <li>Sécurité & réseau : support sur les équipements Sophos, résolution des incidents réseaux de base.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formations -->
+        <section id="education">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Formations</h2>
+            <div class="education-container">
+                <div class="card education-card">
+                    <div class="education-year">2018 - 2019</div>
+                    <div class="education-institution">CESI Labège</div>
+                    <div>Formation « Management et gestion de projet IT »</div>
+                </div>
+                
+                <div class="card education-card">
+                    <div class="education-year">2016</div>
+                    <div class="education-institution">AP Formation</div>
+                    <div>Titre Professionnel « Gestionnaire Systèmes et Réseaux » (Certification Niveau 3)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Langues -->
+        <section id="languages">
+            <h2 class="section-title"><i class="fas fa-language"></i> Langues</h2>
+            <div class="language-container">
+                <div class="card language-card">
+                    <i class="fas fa-flag-usa"></i>
+                    <div>
+                        <div><strong>ANGLAIS</strong></div>
+                        <div>Technique écrit</div>
+                    </div>
+                </div>
+                
+                <div class="card language-card">
+                    <i class="fas fa-flag"></i>
+                    <div>
+                        <div><strong>FRANÇAIS</strong></div>
+                        <div>Langue maternelle</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        let isDarkMode = false;
+        
+        // Vérifier s'il y a une préférence enregistrée pour le thème
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            isDarkMode = true;
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+            // Enregistrer la préférence de thème
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            
+            if (isDarkMode) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+        
+        // Fonctionnalité du bouton d'impression
+        const printButton = document.getElementById('printButton');
+        printButton.addEventListener('click', () => {
+            window.print();
+        });
+    </script>
+</body>
+</html>
